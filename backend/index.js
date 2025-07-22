@@ -1,12 +1,13 @@
 import express from "express";
+import cors from "cors";
 import { DateTime } from "luxon";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const isValidNic = (nic) => {
   const nicPattern = /^(?:\d{9}[vxVX]|\d{12})$/;
-  console.log("Validating NIC:", nic);
   return nicPattern.test(nic);
 };
 
@@ -65,7 +66,6 @@ app.post("/", (req, res) => {
       success: "true",
       message: "NIC received successfully.",
       data: {
-        nic,
         dob,
         gender,
       },
