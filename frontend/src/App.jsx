@@ -61,7 +61,7 @@ const App = () => {
           className="mb-6"
         >
           <p className="text-gray-600">
-            NIC Info Finder is a simple and secure tool that lets you extract
+            NIC Details Extractor is a simple and secure tool that lets you extract
             the date of birth and gender from any valid Sri Lankan NIC number.
             It supports both old and new NIC formats and adjusts for leap years
             correctly. Useful for quick identity verification in schools, banks,
