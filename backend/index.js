@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:"*"}));
 
 const isValidNic = (nic) => {
   const nicPattern = /^(?:\d{9}[vxVX]|\d{12})$/;
