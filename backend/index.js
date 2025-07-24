@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 
 const app = express();
 app.use(express.json());
-app.use(cors({origin:"*"}));
+app.use(cors({ origin: "*" }));
 
 const isValidNic = (nic) => {
   const nicPattern = /^(?:\d{9}[vxVX]|\d{12})$/;
@@ -23,7 +23,11 @@ const getDetailsFromNic = (nic) => {
     yearFromNic += 1900;
     dayFromNic = parseInt(nic.slice(2, 5), 10);
   } else {
-    throw new Error("Invalid NIC length");
+    throw new Error("NIC number must be 10 or 12 characters long.");
+  }
+
+  if (dayFromNic < 1 || (dayFromNic > 366 && dayFromNic <= 500) || dayFromNic > 866) {
+    throw new Error("Invalid day value in NIC. Please check the NIC number.");
   }
 
   if (dayFromNic > 500) {
@@ -49,14 +53,14 @@ app.post("/", (req, res) => {
     if (nic.trim() === "") {
       return res.status(400).json({
         status: "false",
-        message: "NIC is required.",
+        message: "NIC number is required.",
       });
     }
 
     if (!isValidNic(nic)) {
       return res.status(400).json({
         status: "false",
-        message: "Invalid NIC format.",
+        message: "NIC format is incorrect. Use a 10-digit NIC ending with 'V' or 'X', or a 12-digit new format.",
       });
     }
 
@@ -64,7 +68,7 @@ app.post("/", (req, res) => {
 
     res.json({
       success: "true",
-      message: "NIC received successfully.",
+      message: "NIC processed successfully.",
       data: {
         dob,
         gender,
@@ -73,8 +77,7 @@ app.post("/", (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "false",
-      message: "An error occurred while processing your request.",
-      error: error.message,
+      message: error.message || "An error occurred while processing your request.",
     });
   }
 });

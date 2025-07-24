@@ -14,8 +14,10 @@ const App = () => {
     setResult(null);
     setLoading(true);
 
+    //https://nic-insight-backend.onrender.com
+
     try {
-      const res = await axios.post("https://nic-insight-backend.onrender.com/", { nic });
+      const res = await axios.post("http://localhost:5000/", { nic });
       setResult(res.data);
       setError(null);
     } catch (error) {
@@ -116,7 +118,7 @@ const App = () => {
           {/* Result */}
           {result && (
             <motion.div
-              className="bg-green-100 border border-green-300 rounded-md p-4 mt-4 opacity-50"
+              className="bg-green-100 border border-green-300 rounded p-4 mt-4 opacity-50"
               initial={{ opacity: 0 , scale:0.95}}
               animate={{ opacity: 1 , scale:1}}
               transition={{ duration: 0.3 }}
@@ -138,7 +140,7 @@ const App = () => {
           {/* Error */}
           {error && (
             <motion.div
-              className="bg-red-100 border border-red-300 text-red-700 rounded-md p-3 mt-4 opacity-50"
+              className="bg-red-100 border border-red-300 text-red-700 rounded p-3 mt-4 opacity-50"
               initial={{ opacity: 0, scale:0.95 }}
               animate={{ opacity: 1, scale:1 }}
               transition={{ duration: 0.3 }}
