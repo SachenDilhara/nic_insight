@@ -36,5 +36,5 @@ NIC Insight is a simple and powerful tool to extract personal information from S
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/your-username/nic_insight.git
+git clone [https://github.com/your-username/nic_insight.git](https://github.com/SachenDilhara/nic_insight.git) 
 cd nic_insight
