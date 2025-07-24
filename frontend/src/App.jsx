@@ -14,10 +14,8 @@ const App = () => {
     setResult(null);
     setLoading(true);
 
-    //https://nic-insight-backend.onrender.com
-
     try {
-      const res = await axios.post("http://localhost:5000/", { nic });
+      const res = await axios.post("https://nic-insight-backend.onrender.com/", { nic });
       setResult(res.data);
       setError(null);
     } catch (error) {
